@@ -1,0 +1,99 @@
+[gd_scene load_steps=7 format=3 uid="uid://du810irmk268v"]
+
+[ext_resource type="Theme" uid="uid://cgmjqqgr3bnmh" path="res://resources/styles/main_theme.tres" id="1_sdr8f"]
+[ext_resource type="Script" path="res://scripts/set_date.gd" id="2_1eo3n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vqdy"]
+bg_color = Color(0, 0, 0, 0.45098)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2lv54"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xec6u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lnyig"]
+
+[node name="SetDate" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_force_pass_scroll_events = false
+theme = ExtResource("1_sdr8f")
+script = ExtResource("2_1eo3n")
+
+[node name="KillScene" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_7vqdy")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7vqdy")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_2lv54")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_xec6u")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lnyig")
+button_mask = 7
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -141.5
+offset_top = -54.5
+offset_right = 141.5
+offset_bottom = 54.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Формат: 1234 - 12 - 12"
+horizontal_alignment = 1
+
+[node name="Date" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/Date"]
+layout_mode = 2
+text = "Дата:"
+
+[node name="Data" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Date"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Param1" type="LineEdit" parent="PanelContainer/VBoxContainer/Date/Data"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Год"
+
+[node name="Param2" type="LineEdit" parent="PanelContainer/VBoxContainer/Date/Data"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Месяц"
+
+[node name="Param3" type="LineEdit" parent="PanelContainer/VBoxContainer/Date/Data"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "День"
+
+[node name="EnterData" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Установить"
+
+[connection signal="pressed" from="KillScene" to="." method="_on_kill_scene_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/EnterData" to="." method="_on_enter_data_pressed"]

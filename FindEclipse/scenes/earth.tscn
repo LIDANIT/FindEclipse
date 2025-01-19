@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://ccuwrjny7vheq"]
+
+[ext_resource type="Script" path="res://scripts/earth.gd" id="1_3mg0b"]
+[ext_resource type="PackedScene" uid="uid://cmskkbcqgmc3j" path="res://resources/earth/scene.gltf" id="1_yu4bb"]
+
+[sub_resource type="GDScript" id="GDScript_ajakb"]
+resource_name = "Area3D"
+script/source = "extends Area3D
+
+
+@export var marker: Marker3D
+
+
+func _on_input_event(_camera, event, _position, normal, _shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == 1 and event.pressed and event.double_click:
+			var pos = to_local(normal)
+			
+			var r = sqrt(pos.x ** 2 + pos.y ** 2 + pos.z ** 2)
+			var lat = 90 - rad_to_deg(acos(pos.y / r))
+			var lon = rad_to_deg(atan2(pos.x, pos.z))
+			
+			G.set_point.emit(lat, lon)
+"
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_sqmwt"]
+radius = 100.0
+
+[node name="Earth" type="Node3D"]
+script = ExtResource("1_3mg0b")
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_yu4bb")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="Area3D" type="Area3D" parent="." node_paths=PackedStringArray("marker")]
+script = SubResource("GDScript_ajakb")
+marker = NodePath("Marker3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_sqmwt")
+
+[node name="Marker3D" type="Marker3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[connection signal="input_event" from="Area3D" to="Area3D" method="_on_input_event"]

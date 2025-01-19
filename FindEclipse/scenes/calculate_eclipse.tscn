@@ -1,0 +1,293 @@
+[gd_scene load_steps=7 format=3 uid="uid://bkk8wh2nfw3dn"]
+
+[ext_resource type="Theme" uid="uid://cgmjqqgr3bnmh" path="res://resources/styles/main_theme.tres" id="1_vetl4"]
+[ext_resource type="Script" path="res://scripts/calculate_eclipse.gd" id="2_7w1hc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vqdy"]
+bg_color = Color(0, 0, 0, 0.45098)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2lv54"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mksbs"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dcc7m"]
+
+[node name="CalculateEclipse" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_force_pass_scroll_events = false
+theme = ExtResource("1_vetl4")
+script = ExtResource("2_7w1hc")
+
+[node name="KillScene" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_7vqdy")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7vqdy")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_2lv54")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_mksbs")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dcc7m")
+button_mask = 7
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -117.5
+offset_top = -188.5
+offset_right = 117.5
+offset_bottom = 188.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Latitude" type="HBoxContainer" parent="PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/VBoxContainer/Latitude"]
+layout_mode = 2
+text = "Широта:"
+
+[node name="Data" type="HBoxContainer" parent="PanelContainer/VBoxContainer/VBoxContainer/Latitude"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Param1" type="LineEdit" parent="PanelContainer/VBoxContainer/VBoxContainer/Latitude/Data"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "0-90"
+
+[node name="Param2" type="OptionButton" parent="PanelContainer/VBoxContainer/VBoxContainer/Latitude/Data"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+item_count = 2
+selected = 0
+popup/item_0/text = "ю. ш."
+popup/item_0/id = 1
+popup/item_1/text = "с. ш."
+popup/item_1/id = 0
+
+[node name="Longitude" type="HBoxContainer" parent="PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/VBoxContainer/Longitude"]
+layout_mode = 2
+text = "Долгота:"
+
+[node name="Data" type="HBoxContainer" parent="PanelContainer/VBoxContainer/VBoxContainer/Longitude"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Param1" type="LineEdit" parent="PanelContainer/VBoxContainer/VBoxContainer/Longitude/Data"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "0-180"
+
+[node name="Param2" type="OptionButton" parent="PanelContainer/VBoxContainer/VBoxContainer/Longitude/Data"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+item_count = 2
+selected = 0
+popup/item_0/text = "з. д."
+popup/item_0/id = 1
+popup/item_1/text = "в. д."
+popup/item_1/id = 0
+
+[node name="StartDate" type="VBoxContainer" parent="PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/VBoxContainer/StartDate"]
+layout_mode = 2
+text = "Дата начала поиска:"
+horizontal_alignment = 1
+
+[node name="Data" type="HBoxContainer" parent="PanelContainer/VBoxContainer/VBoxContainer/StartDate"]
+layout_mode = 2
+alignment = 1
+
+[node name="Param1" type="LineEdit" parent="PanelContainer/VBoxContainer/VBoxContainer/StartDate/Data"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Год"
+
+[node name="Param2" type="LineEdit" parent="PanelContainer/VBoxContainer/VBoxContainer/StartDate/Data"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Месяц"
+
+[node name="Param3" type="LineEdit" parent="PanelContainer/VBoxContainer/VBoxContainer/StartDate/Data"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "День"
+
+[node name="StartTime" type="VBoxContainer" parent="PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/VBoxContainer/StartTime"]
+layout_mode = 2
+text = "Время начала поиска:"
+horizontal_alignment = 1
+
+[node name="Data" type="HBoxContainer" parent="PanelContainer/VBoxContainer/VBoxContainer/StartTime"]
+layout_mode = 2
+alignment = 1
+
+[node name="Param1" type="LineEdit" parent="PanelContainer/VBoxContainer/VBoxContainer/StartTime/Data"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Часов"
+
+[node name="Param2" type="LineEdit" parent="PanelContainer/VBoxContainer/VBoxContainer/StartTime/Data"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Минут"
+
+[node name="Param3" type="LineEdit" parent="PanelContainer/VBoxContainer/VBoxContainer/StartTime/Data"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Секунд"
+
+[node name="EndDate" type="VBoxContainer" parent="PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/VBoxContainer/EndDate"]
+layout_mode = 2
+text = "Дата окончания поиска:"
+horizontal_alignment = 1
+
+[node name="Data" type="HBoxContainer" parent="PanelContainer/VBoxContainer/VBoxContainer/EndDate"]
+layout_mode = 2
+alignment = 1
+
+[node name="Param1" type="LineEdit" parent="PanelContainer/VBoxContainer/VBoxContainer/EndDate/Data"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Год"
+
+[node name="Param2" type="LineEdit" parent="PanelContainer/VBoxContainer/VBoxContainer/EndDate/Data"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Месяц"
+
+[node name="Param3" type="LineEdit" parent="PanelContainer/VBoxContainer/VBoxContainer/EndDate/Data"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "День"
+
+[node name="EndTime" type="VBoxContainer" parent="PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/VBoxContainer/EndTime"]
+layout_mode = 2
+text = "Время окончания поиска:"
+horizontal_alignment = 1
+
+[node name="Data" type="HBoxContainer" parent="PanelContainer/VBoxContainer/VBoxContainer/EndTime"]
+layout_mode = 2
+alignment = 1
+
+[node name="Param1" type="LineEdit" parent="PanelContainer/VBoxContainer/VBoxContainer/EndTime/Data"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Часов"
+
+[node name="Param2" type="LineEdit" parent="PanelContainer/VBoxContainer/VBoxContainer/EndTime/Data"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Минут"
+
+[node name="Param3" type="LineEdit" parent="PanelContainer/VBoxContainer/VBoxContainer/EndTime/Data"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Секунд"
+
+[node name="TimeFrequency" type="HBoxContainer" parent="PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/VBoxContainer/TimeFrequency"]
+layout_mode = 2
+text = "Временной шаг:"
+
+[node name="Data" type="HBoxContainer" parent="PanelContainer/VBoxContainer/VBoxContainer/TimeFrequency"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Param1" type="LineEdit" parent="PanelContainer/VBoxContainer/VBoxContainer/TimeFrequency/Data"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Секунд"
+
+[node name="Accuracy" type="HBoxContainer" parent="PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/VBoxContainer/Accuracy"]
+layout_mode = 2
+text = "Точность:"
+
+[node name="Data" type="HBoxContainer" parent="PanelContainer/VBoxContainer/VBoxContainer/Accuracy"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Param1" type="OptionButton" parent="PanelContainer/VBoxContainer/VBoxContainer/Accuracy/Data"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Чем выше точность, тем больше время расчёта. 
+Высокая в ~500 раз дольше низкой, но точность гораздо выше."
+alignment = 1
+item_count = 2
+selected = 0
+popup/item_0/text = "низкая"
+popup/item_0/id = 1
+popup/item_1/text = "высокая"
+popup/item_1/id = 0
+
+[node name="EnterParamsButton" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Рассчитать"
+
+[connection signal="pressed" from="KillScene" to="." method="_on_kill_scene_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/EnterParamsButton" to="." method="_on_enter_params_button_pressed"]

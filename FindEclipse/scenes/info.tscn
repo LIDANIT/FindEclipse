@@ -1,0 +1,85 @@
+[gd_scene load_steps=7 format=3 uid="uid://siomn6o8bh3v"]
+
+[ext_resource type="Theme" uid="uid://cgmjqqgr3bnmh" path="res://resources/styles/main_theme.tres" id="1_j05cr"]
+
+[sub_resource type="GDScript" id="GDScript_cp2wi"]
+resource_name = "Info"
+script/source = "extends Control
+
+
+func _on_kill_scene_pressed():
+	$\"../../SceneChanger\".return_to_current_scene()
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vqdy"]
+bg_color = Color(0, 0, 0, 0.45098)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2lv54"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xec6u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lnyig"]
+
+[node name="Info" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_force_pass_scroll_events = false
+theme = ExtResource("1_j05cr")
+script = SubResource("GDScript_cp2wi")
+
+[node name="KillScene" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_7vqdy")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7vqdy")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_2lv54")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_xec6u")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lnyig")
+button_mask = 7
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -141.5
+offset_top = -54.5
+offset_right = 141.5
+offset_bottom = 54.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Label2" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Программа создана Чуховым Максимом при поддержке Храмцовой Юлии.
+Find Eclipse можно использовать в любых коммерческих целях.
+Открытый код программы по ссылке: https://github.com/LIDANIT/FindEclipse"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "This work is based on \"Earth\"
+(https://sketchfab.com/3d-models/earth-41fc80d85dfd480281f21b74b2de2faa) 
+by Akshat (https://sketchfab.com/shooter24994)
+licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="KillScene" to="." method="_on_kill_scene_pressed"]

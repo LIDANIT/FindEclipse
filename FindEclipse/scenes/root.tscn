@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://cr8s1ahavse1g"]
+
+[ext_resource type="PackedScene" uid="uid://oi0wypypcyfm" path="res://scenes/scene_changer.tscn" id="2_3n1cc"]
+[ext_resource type="PackedScene" uid="uid://10do84okyyfk" path="res://scenes/world.tscn" id="2_upq5c"]
+[ext_resource type="PackedScene" uid="uid://cnxxwkelwlkon" path="res://scenes/main_screen.tscn" id="2_y0beh"]
+[ext_resource type="PackedScene" uid="uid://bkk8wh2nfw3dn" path="res://scenes/calculate_eclipse.tscn" id="3_6belk"]
+[ext_resource type="PackedScene" uid="uid://kos1d6rh003n" path="res://scenes/page.tscn" id="5_5rew8"]
+[ext_resource type="PackedScene" uid="uid://du810irmk268v" path="res://scenes/set_date.tscn" id="6_a66uc"]
+[ext_resource type="PackedScene" uid="uid://siomn6o8bh3v" path="res://scenes/info.tscn" id="7_fcrvd"]
+
+[node name="Root" type="Node"]
+
+[node name="World" parent="." instance=ExtResource("2_upq5c")]
+
+[node name="SceneChanger" parent="." instance=ExtResource("2_3n1cc")]
+mouse_filter = 2
+scenes = {
+"CalculateEclipse": NodePath("../Scenes/CalculateEclipse"),
+"Info": NodePath("../Scenes/Info"),
+"MainScreen": NodePath("../Scenes/MainScreen"),
+"Page": NodePath("../Scenes/Page"),
+"SetDate": NodePath("../Scenes/SetDate")
+}
+
+[node name="Scenes" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MainScreen" parent="Scenes" instance=ExtResource("2_y0beh")]
+visible = false
+layout_mode = 1
+
+[node name="Page" parent="Scenes" instance=ExtResource("5_5rew8")]
+visible = false
+layout_mode = 1
+
+[node name="SetDate" parent="Scenes" instance=ExtResource("6_a66uc")]
+visible = false
+layout_mode = 1
+
+[node name="CalculateEclipse" parent="Scenes" instance=ExtResource("3_6belk")]
+visible = false
+layout_mode = 1
+
+[node name="Info" parent="Scenes" instance=ExtResource("7_fcrvd")]
+visible = false
+layout_mode = 1
