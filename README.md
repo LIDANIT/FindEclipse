@@ -11,5 +11,5 @@
 
 ## Установка
 
-Скачать собранный проект можно по ссылке: https://disk.yandex.ru/d/sntC8Zz0bRSXXw
-После скачивания запустите FindEclipse.exe.
+Скачать собранный проект можно по ссылке: https://disk.yandex.ru/d/Ys15L4nO3s8_aQ
+После скачивания распакуйте архив и запустите FindEclipse.exe.
