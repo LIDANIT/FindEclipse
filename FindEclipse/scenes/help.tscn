@@ -1,0 +1,106 @@
+[gd_scene load_steps=7 format=3 uid="uid://bc3jeolg6j4vk"]
+
+[ext_resource type="Theme" uid="uid://cgmjqqgr3bnmh" path="res://resources/styles/main_theme.tres" id="1_vmii1"]
+
+[sub_resource type="GDScript" id="GDScript_cp2wi"]
+resource_name = "Info"
+script/source = "extends Control
+
+
+func _on_kill_scene_pressed():
+	$\"../../SceneChanger\".return_to_current_scene()
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vqdy"]
+bg_color = Color(0, 0, 0, 0.45098)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2lv54"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xec6u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lnyig"]
+
+[node name="Help" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_force_pass_scroll_events = false
+theme = ExtResource("1_vmii1")
+script = SubResource("GDScript_cp2wi")
+
+[node name="KillScene" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_7vqdy")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7vqdy")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_2lv54")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_xec6u")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lnyig")
+button_mask = 7
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -37.0
+offset_right = 260.0
+offset_bottom = 37.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(880, 495)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+theme_override_font_sizes/italics_font_size = 20
+theme_override_font_sizes/bold_italics_font_size = 20
+theme_override_font_sizes/mono_font_size = 20
+bbcode_enabled = true
+text = "[color=yellow][b]Список возможных нажатий клавиш:[/b][/color]
+1) Левая кнопка мыши (ЛКМ) - основное взаимодествие в программе.
+2) Колёсико мыши - приближение/отдаление камеры, а также прокрутка длинных списков.
+[color=yellow][b]Обучение:[/b][/color]
+[color=green]1)[/color] [i]Выбор места.[/i] Выбрать место можно двумя способами: а) двойным нажатием ЛКМ по каким-либо координатам на модели Земли; б) указать соответствующие параметры в меню \"Рассчитать затмение\".
+[color=green]2)[/color] [i]Дополнительные сведения.[/i] При нажатии на меню \"Рассчитать затмения\" или двойном нажатии ЛКМ по Земле откроется меню. В нём необходимо заполнить все соответствующие поля. Вормат заполнения указано внутри поля или рядом с ним. В случае ошибки программа уведомит Вас красным выделением неправильно заполненного параметра.
+[color=green]3)[/color] [i]Начало расчёта.[/i] После внесения всех данных необходимо нажать на кнопку \"Рассчитать\". Начнётся выполнение программы по предсказанию солнечных затмений.
+[color=green]4)[/color] [i]Дополнительные возможности.[/i] Во время расчёта Вам доступна возможность его остановки с помощью кнопки \"Отмена\".
+[color=green]5)[/color] [i]Окончание расчёта.[/i] После окончания расчёта возможно два варианта: а) появится всплывающее окно, уведомляющее о том, что ни одно затмение не найдено; б) откроется страница со всеми найденными затмениями.
+[color=green]6)[/color] [i]Работа с затмениями.[/i] Если выполнен пункт (б), то в левом окне Вы можете выбрать любое из затмений, и его характеристики появятся в правом окне.
+[color=green]6)[/color] [i]Возвращение на главный экран.[/i] Сверху открытой страницы Вы можете найти кнопку \"Назад\". Она поможет вернуться на главный экран.
+[color=yellow][b]Основной функционал:[/b][/color]
+Все кнопки в программе организованы в одинаковом стиле.
+На главном экране можно найти следующие кнопки:
+	\"Рассчитать затмение\" - кнопка, отвечающая за открытие поля ввода данных.
+	\"Помощь\" - открытие этого окна.
+	\"Авторы\" - информация об авторах и авторском праве.
+Также вы можете нажать двойным кликом ЛКМ по маркеру, чтобы открыть уже просчитанные ранее затмения."
+
+[node name="Return" type="Button" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+tooltip_text = "Возвращение на главный экран"
+theme_override_font_sizes/font_size = 20
+button_mask = 7
+text = "Назад"
+
+[connection signal="pressed" from="KillScene" to="." method="_on_kill_scene_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Return" to="." method="_on_kill_scene_pressed"]

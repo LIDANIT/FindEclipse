@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdyox0fdbe7j"]
+
+[ext_resource type="Script" path="res://scripts/marker.gd" id="1_u5ha5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d8dvr"]
+albedo_color = Color(0.762664, 0, 0.143161, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_jge1n"]
+material = SubResource("StandardMaterial3D_d8dvr")
+radius = 1.0
+height = 2.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2c5se"]
+
+[node name="Marker" type="Node3D"]
+script = ExtResource("1_u5ha5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_jge1n")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_2c5se")

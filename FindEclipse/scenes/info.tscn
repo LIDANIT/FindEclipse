@@ -1,0 +1,111 @@
+[gd_scene load_steps=8 format=3 uid="uid://siomn6o8bh3v"]
+
+[ext_resource type="Theme" uid="uid://cgmjqqgr3bnmh" path="res://resources/styles/main_theme.tres" id="1_j05cr"]
+
+[sub_resource type="GDScript" id="GDScript_cp2wi"]
+resource_name = "Info"
+script/source = "extends Control
+
+
+func _on_kill_scene_pressed():
+	$\"../../SceneChanger\".return_to_current_scene()
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vqdy"]
+bg_color = Color(0, 0, 0, 0.45098)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2lv54"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xec6u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lnyig"]
+
+[sub_resource type="GDScript" id="GDScript_v2nhm"]
+resource_name = "Github"
+script/source = "extends RichTextLabel
+
+
+func _on_meta_clicked(meta):
+	OS.shell_open(meta)
+	print(meta)
+"
+
+[node name="Info" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_force_pass_scroll_events = false
+theme = ExtResource("1_j05cr")
+script = SubResource("GDScript_cp2wi")
+
+[node name="KillScene" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_7vqdy")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7vqdy")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_2lv54")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_xec6u")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lnyig")
+button_mask = 7
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -141.5
+offset_top = -54.5
+offset_right = 141.5
+offset_bottom = 54.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="Label2" type="RichTextLabel" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(880, 150)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+theme_override_font_sizes/italics_font_size = 20
+theme_override_font_sizes/bold_italics_font_size = 20
+theme_override_font_sizes/mono_font_size = 20
+bbcode_enabled = true
+text = "[center]Программа создана [url=https://github.com/LIDANIT]Чуховым Максимом[/url] при поддержке Храмцовой Юлии.
+Find Eclipse можно использовать в любых коммерческих целях.
+Открытый код программы по ссылке: [url=https://github.com/LIDANIT/FindEclipse]https://github.com/LIDANIT/FindEclipse[/url][/center]"
+script = SubResource("GDScript_v2nhm")
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "This work is based on \"Earth\"
+(https://sketchfab.com/3d-models/earth-41fc80d85dfd480281f21b74b2de2faa) 
+by Akshat (https://sketchfab.com/shooter24994)
+licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Return" type="Button" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "Возвращение на главный экран"
+theme_override_font_sizes/font_size = 20
+button_mask = 7
+text = "Назад"
+
+[connection signal="pressed" from="KillScene" to="." method="_on_kill_scene_pressed"]
+[connection signal="meta_clicked" from="PanelContainer/VBoxContainer/Label2" to="PanelContainer/VBoxContainer/Label2" method="_on_meta_clicked"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Return" to="." method="_on_kill_scene_pressed"]

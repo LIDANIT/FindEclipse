@@ -1,0 +1,80 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnxxwkelwlkon"]
+
+[ext_resource type="Theme" uid="uid://cgmjqqgr3bnmh" path="res://resources/styles/main_theme.tres" id="1_c6yhx"]
+[ext_resource type="Script" path="res://scripts/main_screen.gd" id="1_i8eam"]
+
+[node name="MainScreen" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("1_c6yhx")
+script = ExtResource("1_i8eam")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="CalculateEclipseButton" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+size_flags_vertical = 0
+tooltip_text = "Открыть панель для внесения
+данных о поиске"
+mouse_force_pass_scroll_events = false
+theme = ExtResource("1_c6yhx")
+text = "Рассчитать затмение"
+
+[node name="Help" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+size_flags_vertical = 0
+tooltip_text = "Информация о работе
+с программой"
+mouse_force_pass_scroll_events = false
+theme = ExtResource("1_c6yhx")
+text = "Помощь"
+
+[node name="Autors" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+size_flags_vertical = 0
+tooltip_text = "Информация об авторах и
+использованных ресурсах"
+text = "Авторы"
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 30
+text = "Затмений не найдено!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/CalculateEclipseButton" to="." method="_on_calculate_eclipse_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Help" to="." method="_on_help_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Autors" to="." method="_on_autor_pressed"]

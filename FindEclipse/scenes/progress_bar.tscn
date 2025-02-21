@@ -1,0 +1,79 @@
+[gd_scene load_steps=5 format=3 uid="uid://b7dk2ib4hfq42"]
+
+[ext_resource type="Theme" uid="uid://cgmjqqgr3bnmh" path="res://resources/styles/main_theme.tres" id="1_i83t1"]
+[ext_resource type="Texture2D" uid="uid://dvu80pckgc7s7" path="res://resources/images/ProgressBar.png" id="2_6e77b"]
+[ext_resource type="Script" path="res://scripts/progress_bar.gd" id="2_etrog"]
+[ext_resource type="Texture2D" uid="uid://diw4pfnx54f7v" path="res://resources/images/ProgressBarFull.png" id="3_s5qvj"]
+
+[node name="ProgressBar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_i83t1")
+script = ExtResource("2_etrog")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Поиск затмений..."
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+tooltip_text = "Прогресс выполнения поиска"
+nine_patch_stretch = true
+stretch_margin_left = 10
+stretch_margin_top = 10
+stretch_margin_right = 10
+stretch_margin_bottom = 10
+texture_under = ExtResource("2_6e77b")
+texture_progress = ExtResource("3_s5qvj")
+
+[node name="Timer" type="Timer" parent="PanelContainer/VBoxContainer/TextureProgressBar"]
+wait_time = 0.5
+one_shot = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Stop" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Нажмите, чтобы остановить
+поиск затмений
+(возможна задержка)"
+text = "Отмена"
+
+[node name="Control" type="Control" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/Stop" to="." method="_on_stop_pressed"]
